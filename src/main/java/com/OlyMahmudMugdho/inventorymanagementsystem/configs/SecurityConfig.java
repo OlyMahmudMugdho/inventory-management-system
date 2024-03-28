@@ -19,6 +19,7 @@ public class SecurityConfig {
                     request
                             .requestMatchers("/resources/**", "/js/**", "/styles/**","/css/**").permitAll()
                             .requestMatchers("/login").permitAll()
+                            .requestMatchers("/register").permitAll()
                             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                             .anyRequest().authenticated();
 
