@@ -4,7 +4,7 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.User;
 import lombok.Data;
 
 @Data
-public class RegisterForm {
+public class RegistrationForm {
     private String name;
     private String username;
     private String password;
