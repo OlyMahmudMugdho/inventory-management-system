@@ -24,7 +24,7 @@ public class SecurityConfig {
                 })
                 .formLogin( (form) -> {
                     form.loginPage("/login")
-                            .successForwardUrl("/")
+                            .defaultSuccessUrl("/")
                     .permitAll();
                 } );
 
