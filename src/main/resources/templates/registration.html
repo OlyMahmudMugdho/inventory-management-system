@@ -17,19 +17,19 @@
         <div class="col">
             <div class="col">
                 <label for="name" class="form-label">Name </label>
-                <input type="text" class="form-control" placeholder="Enter full name" id="name">
+                <input type="text" class="form-control" placeholder="Enter full name" id="name" th:field="*{name}">
             </div>
             <div class="col">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" placeholder="Enter username" id="username">
+                <input type="text" class="form-control" placeholder="Enter username" id="username" th:field="*{username}">
             </div>
             <div class="col">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" placeholder="Enter password" id="password">
+                <input type="password" class="form-control" placeholder="Enter password" id="password" th:field="*{password}">
             </div>
             <div class="col">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" placeholder="Enter E-mail" id="email">
+                <input type="email" class="form-control" placeholder="Enter E-mail" id="email" th:field="*{email}">
             </div>
 
             <div class="col py-4">
