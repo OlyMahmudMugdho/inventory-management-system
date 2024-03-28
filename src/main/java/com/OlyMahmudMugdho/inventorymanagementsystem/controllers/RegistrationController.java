@@ -1,11 +1,15 @@
 package com.OlyMahmudMugdho.inventorymanagementsystem.controllers;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.RegistrationForm;
+import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.UserRepository;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.IUserService;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.backoff.BackOff;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,21 +20,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegistrationController {
 
     private IUserService userService;
+    private PasswordEncoder passwordEncoder;
+    private UserRepository userRepository;
 
-    public RegistrationController(UserService userService) {
+    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("")
-    public String registerForm(Model model) {
-        model.addAttribute("registrationForm", new RegistrationForm());
+    public String registerForm(Model model, @ModelAttribute("registrationForm") RegistrationForm registerForm) {
+//        model.addAttribute("registrationForm", new RegistrationForm());
         return "registration";
     }
 
     @PostMapping("")
     public String register(@ModelAttribute("registrationForm") RegistrationForm registerForm, Model model){
         System.out.println(registerForm);
-        userService.addUser(registerForm.toUser());
+        userService.addUser(registerForm.toUser(passwordEncoder));
+        //userRepository.save(registerForm.toUser(passwordEncoder));
         return "redirect:/";
     }
 }
