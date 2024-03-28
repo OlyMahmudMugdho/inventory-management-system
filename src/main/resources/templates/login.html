@@ -19,8 +19,12 @@
         </div>
         <div class="text-danger" th:if="${param.error}">
             <h5>
+
                 invalid credentials
             </h5>
+            <p th:text="${param.error}">
+
+            </p>
         </div>
         <form th:action="@{/login}" method="post" class="col-md-5">
             <div class="col">
