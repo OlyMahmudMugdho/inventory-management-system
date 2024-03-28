@@ -12,8 +12,15 @@
 <body>
     <div class="container d-flex flex-column align-items-center justify-content-center min-vh-100">
         <h1>Login</h1>
-        <div th:if="${param.error}">
-            invalid pass
+        <div class="text-danger" th:if="${param.logout}">
+            <h5>
+                You've been logged out
+            </h5>
+        </div>
+        <div class="text-danger" th:if="${param.error}">
+            <h5>
+                invalid credentials
+            </h5>
         </div>
         <form th:action="@{/login}" method="post" class="col-md-5">
             <div class="col">
