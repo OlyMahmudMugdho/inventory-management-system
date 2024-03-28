@@ -16,17 +16,22 @@
     <form th:action="@{/register}" th:object="${registrationForm}" method="post" class="col-md-5">
         <div class="col">
             <div class="col">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" placeholder="Enter username" id="name">
+                <label for="name" class="form-label">Name </label>
+                <input type="text" class="form-control" placeholder="Enter full name" id="name">
             </div>
             <div class="col">
-                <h5>Username</h5>
-                <input type="text" class="form-control" placeholder="Enter username" name="username">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" placeholder="Enter username" id="username">
             </div>
             <div class="col">
-                <h5>Password</h5>
-                <input type="password" class="form-control" placeholder="Enter password" name="password">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="password">
             </div>
+            <div class="col">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" placeholder="Enter E-mail" id="email">
+            </div>
+
             <div class="col py-4">
                 <button class="w-100 btn btn-success">Register</button>
             </div>
