@@ -10,7 +10,7 @@ public class RegistrationForm {
     private String password;
     private String email;
 
-    public User toUser(String name, String username, String password, String email){
+    public User toUser(){
         return new User(name,username,password,email);
     }
 }
