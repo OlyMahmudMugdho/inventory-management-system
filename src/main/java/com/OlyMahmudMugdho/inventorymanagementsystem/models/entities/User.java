@@ -16,18 +16,17 @@ import java.util.List;
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity(name = "users")
 public class User implements UserDetails {
     @Id
-    @SequenceGenerator(name = "user_id_sequence")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private long id;
     private String name;
     private String username;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_role_junction",
             joinColumns = {@JoinColumn(name = "user_id")},
@@ -39,8 +38,6 @@ public class User implements UserDetails {
     private String phone;
     private String email;
     private String joined_on;
-    private boolean isRemoved;
-    private boolean isEnabled;
     private String description;
 
     public User(String name, String username, String password, String email){
@@ -50,9 +47,13 @@ public class User implements UserDetails {
         this.email = email;
     }
 
+    public User() {
+
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
@@ -74,5 +75,11 @@ public class User implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 
 }
