@@ -47,7 +47,7 @@ public class SecurityConfig  {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((request) -> {
                     request
-                            .requestMatchers("/resources/**", "/js/**", "/styles/**","/css/**").permitAll()
+                            .requestMatchers("/resources/**", "/js/**", "/styles/**","/css/**","/fragments/**").permitAll()
                             .requestMatchers("/login").permitAll()
                             .requestMatchers("/register").permitAll()
                             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
