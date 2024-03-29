@@ -2,13 +2,18 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><script th:src="@{/js/bootstrap.min.js}" ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
     <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
     <title>Index</title>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-success text-red-500 ">This is homepage</h1>
+        <nav th:replace="fragments/header :: header">
+
+        </nav>
+        <h1 class="text-success text-red-500 pt-5 ">This is homepage</h1>
     </div>
+    <script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
 </body>
 </html>
