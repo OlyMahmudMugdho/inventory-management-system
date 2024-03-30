@@ -1,8 +1,10 @@
 package com.OlyMahmudMugdho.inventorymanagementsystem.controllers;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.RegistrationForm;
+import com.OlyMahmudMugdho.inventorymanagementsystem.models.Role;
 import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.UserRepository;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.IUserService;
+import com.OlyMahmudMugdho.inventorymanagementsystem.services.RoleService;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,19 +20,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {
 
     private IUserService userService;
+    private RoleService roleService;
     private PasswordEncoder passwordEncoder;
-    private UserRepository userRepository;
 
-    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder, UserRepository userRepository) {
+
+    public RegistrationController(UserService userService, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
-        this.userRepository = userRepository;
     }
 
     @GetMapping("")
@@ -47,7 +52,10 @@ public class RegistrationController {
     @PostMapping("")
     public String register(@ModelAttribute("registrationForm") RegistrationForm registerForm, Model model){
         System.out.println(registerForm);
-        userService.addUser(registerForm.toUser(passwordEncoder));
+        Role role = roleService.getRoleByName("USER");
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        userService.addUser(registerForm.toUser(passwordEncoder, roles));
         //userRepository.save(registerForm.toUser(passwordEncoder));
         return "redirect:/";
     }
