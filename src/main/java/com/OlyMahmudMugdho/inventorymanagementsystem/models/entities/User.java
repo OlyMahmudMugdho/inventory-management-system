@@ -2,18 +2,12 @@ package com.OlyMahmudMugdho.inventorymanagementsystem.models.entities;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 
@@ -32,6 +26,7 @@ public class User implements UserDetails {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
+    @Column(name = "roles")
     private Set<Role> roles;
     private String address;
     private String password;
@@ -40,11 +35,12 @@ public class User implements UserDetails {
     private String joined_on;
     private String description;
 
-    public User(String name, String username, String password, String email){
+    public User(String name, String username, String password, String email, Set<Role> roles){
         this.name = name;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.roles = roles;
     }
 
     public User() {
