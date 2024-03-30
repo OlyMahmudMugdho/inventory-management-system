@@ -2,14 +2,10 @@ package com.OlyMahmudMugdho.inventorymanagementsystem.controllers;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.RegistrationForm;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.Role;
-import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.UserRepository;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.IUserService;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.RoleService;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +27,7 @@ public class RegistrationController {
     private RoleService roleService;
     private PasswordEncoder passwordEncoder;
 
-
+    @Autowired
     public RegistrationController(UserService userService, PasswordEncoder passwordEncoder, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
