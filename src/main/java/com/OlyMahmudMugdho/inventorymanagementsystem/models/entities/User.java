@@ -52,7 +52,8 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 //        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
         List<String> authorities = this.roles.stream().map(role -> role.getAuthority()).collect(Collectors.toList());
-        return Arrays.asList(new SimpleGrantedAuthority(authorities.toString()));
+        //return Arrays.asList(new SimpleGrantedAuthority(authorities.toString()));
+        return this.roles;
     }
 
     @Override
