@@ -17,6 +17,7 @@ public class LoginController {
         if (authentication != null) {
             User user = (User) authentication.getPrincipal();
             System.out.println(user.getEmail());
+            System.out.println(authentication.getAuthorities());
             return "redirect:/";
         }
 //        if (principal != null) {
