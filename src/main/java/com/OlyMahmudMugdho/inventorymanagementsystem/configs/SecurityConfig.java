@@ -1,6 +1,7 @@
 package com.OlyMahmudMugdho.inventorymanagementsystem.configs;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.User;
+import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.RoleRepository;
 import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.UserRepository;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -27,10 +28,10 @@ public class SecurityConfig  {
 
 
     @Bean
-    public UserDetailsService userDetailsService(UserRepository userRepository) {
+    public UserDetailsService userDetailsService(UserRepository userRepository, RoleRepository roleRepository) {
         return username -> {
             User user = userRepository.findByUsername(username);
-            System.out.println(user);
+            System.out.println(user.getAuthorities());
             if (user != null){
                 return user;
             }
