@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Home | IMS Spring Boot</title>
+</head>
+<body>
+<div class="col-md-6 d-flex flex-column justify-content-center align-items-center  " th:fragment="product-form">
+    <div class="w-100 mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" placeholder="product name" id="name" >
+    </div>
+    <div class="w-100 mb-3">
+        <label for="description" class="form-label">Product Description</label>
+        <input type="text" class="form-control" id="description" placeholder="description">
+    </div>
+    <div class="w-100 mb-3">
+        <label for="stocks" class="form-label">Available Stocks</label>
+        <input type="number" class="form-control" id="stocks" placeholder="description">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="price" placeholder="price">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="unitPrice" class="form-label">Unit Price</label>
+        <input type="number" class="form-control" id="unitPrice" placeholder="unit price">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="status" class="form-label">Product Status</label>
+        <input type="number" class="form-control" id="status" placeholder="product status">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="provider" class="form-label">Provider Name</label>
+        <input type="number" class="form-control" id="provider" placeholder="provider">
+    </div>
+
+    <div class="w-100 my-3">
+        <button class="btn btn-primary text-white w-100">Save Product Information</button>
+    </div>
+
+</div>
+</body>
+</html>
