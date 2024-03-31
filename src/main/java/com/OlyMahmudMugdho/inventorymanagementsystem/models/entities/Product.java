@@ -24,14 +24,15 @@ public class Product {
     private double unitPrice;
     private String status;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_vategory_junction",
-            joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    @Column(name = "product_category")
-    private Set<Category> categories;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "product_vategory_junction",
+//            joinColumns = {@JoinColumn(name = "product_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+//    )
+//    @Column(name = "product_category")
+    //private Set<Category> categories;
+    private String categories;
 
 //    @ManyToMany
 //    @JoinTable(
@@ -42,13 +43,13 @@ public class Product {
 //    private Set<Provider> providers;
     private String provider;
 
-    @ManyToOne
+    @ManyToMany
     @JoinTable(
             name = "product_added_by_junction",
             joinColumns = {@JoinColumn(name = "product_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")}
     )
-    private User addedBy;
+    private Set<User> addedBy;
 
     private String addedOn;
     private boolean isRemoved;
