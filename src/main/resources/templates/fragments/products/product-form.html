@@ -8,44 +8,50 @@
     <title>Home | IMS Spring Boot</title>
 </head>
 <body>
-<div class="col-md-6 d-flex flex-column justify-content-center align-items-center  " th:fragment="product-form">
+<form action="/products/add" class="col-md-6 d-flex flex-column justify-content-center align-items-center "  method="post" th:fragment="product-form" >
+
+    <div class="w-100 mb-3">
+        <label for="productId" class="form-label">Product ID</label>
+        <input type="number" class="form-control" placeholder="product name" id="productId" name="productId" >
+    </div>
+
     <div class="w-100 mb-3">
         <label for="name" class="form-label">Product Name</label>
-        <input type="text" class="form-control" placeholder="product name" id="name" >
+        <input type="text" class="form-control" placeholder="product name" id="name" name="name" >
     </div>
     <div class="w-100 mb-3">
         <label for="description" class="form-label">Product Description</label>
-        <input type="text" class="form-control" id="description" placeholder="description">
+        <input type="text" class="form-control" id="description" placeholder="description" name="description" >
     </div>
     <div class="w-100 mb-3">
         <label for="stocks" class="form-label">Available Stocks</label>
-        <input type="number" class="form-control" id="stocks" placeholder="description">
+        <input type="number" class="form-control" id="stocks" placeholder="description" name="stocks">
     </div>
 
     <div class="w-100 mb-3">
         <label for="price" class="form-label">Price</label>
-        <input type="number" class="form-control" id="price" placeholder="price">
+        <input type="number" class="form-control" id="price" placeholder="price" name="price">
     </div>
 
     <div class="w-100 mb-3">
         <label for="unitPrice" class="form-label">Unit Price</label>
-        <input type="number" class="form-control" id="unitPrice" placeholder="unit price">
+        <input type="number" class="form-control" id="unitPrice" placeholder="unit price" name="unitPrice">
     </div>
 
     <div class="w-100 mb-3">
         <label for="status" class="form-label">Product Status</label>
-        <input type="number" class="form-control" id="status" placeholder="product status">
+        <input type="text" class="form-control" id="status" placeholder="product status" name="status">
     </div>
 
     <div class="w-100 mb-3">
         <label for="provider" class="form-label">Provider Name</label>
-        <input type="number" class="form-control" id="provider" placeholder="provider">
+        <input type="text" class="form-control" id="provider" placeholder="provider" name="provider">
     </div>
 
     <div class="w-100 my-3">
         <button class="btn btn-primary text-white w-100">Save Product Information</button>
     </div>
 
-</div>
+</form>
 </body>
 </html>
