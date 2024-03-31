@@ -31,13 +31,14 @@ public class Product {
     @Column(name = "product_category")
     private Set<Category> categories;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_category_junction",
-            joinColumns = {@JoinColumn(name = "product_id")},
-            inverseJoinColumns = {@JoinColumn(name = "provider_id")}
-    )
-    private Set<Provider> providers;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "product_category_junction",
+//            joinColumns = {@JoinColumn(name = "product_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "provider_id")}
+//    )
+//    private Set<Provider> providers;
+    private String provider;
 
     @ManyToOne
     @JoinTable(
