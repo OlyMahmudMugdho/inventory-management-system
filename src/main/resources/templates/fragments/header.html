@@ -8,9 +8,9 @@
     <title>Home | IMS Spring Boot</title>
 </head>
 <body>
-    <nav class="navbar bg-body-tertiary fixed-top" th:fragment="header">
+    <nav class="navbar bg-body-tertiary fixed-top mb-5" th:fragment="header">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Offcanvas navbar</a>
+            <a class="navbar-brand" href="#">Inventory Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -45,6 +45,7 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
+                    <a th:href="@{/logout}" class="btn btn-danger d-block my-2 bold" th:text="Logout">Logout</a>
                 </div>
             </div>
         </div>
