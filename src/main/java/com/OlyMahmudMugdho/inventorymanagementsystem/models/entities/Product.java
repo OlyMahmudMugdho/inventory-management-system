@@ -51,6 +51,15 @@ public class Product {
     )
     private Set<User> addedBy;
 
+    public String getAddedByUsername(){
+        String username = "";
+        for(User user : addedBy){
+            username = user.getUsername();
+            break;
+        }
+        return username;
+    }
+
     private String addedOn;
     private boolean isRemoved;
 }
