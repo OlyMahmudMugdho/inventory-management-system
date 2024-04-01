@@ -31,4 +31,13 @@ public class ProductDto {
     private String provider;
     private String addedOn;
     private boolean isRemoved;
+
+    public String getAddedByUsername(){
+        String username = "";
+        for(User user : addedBy){
+            username = user.getUsername();
+            break;
+        }
+        return username;
+    }
 }
