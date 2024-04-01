@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
+    <title>All Products</title>
+</head>
+<body class="bg-body-secondary">
+<nav th:replace="fragments/header :: header">
+</nav>
+<div  class=" container min-vh-100 d-flex flex-column align-items-center justify-content-start mt-5 pt-5 w-100 ">
+    <table class="table">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Price</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Status</th>
+                <th scope="col">Category</th>
+                <th scope="col">Provider</th>
+                <th scope="col">Added By</th>
+            </tr>
+        </thead>
+        <tbody th:if="${!products.isEmpty()}">
+            <tr th:each="product : ${products}">
+                <th scope="row" th:text="${product.getProductId()}">1</th>
+                <td th:text="${product.getName()}">Mark</td>
+                <td th:text="${product.getDescription()}">@mdo</td>
+                <td th:text="${product.getStocks()}">@mdo</td>
+                <td th:text="${product.getPrice()}">Otto</td>
+                <td th:text="${product.getUnitPrice()}">@mdo</td>
+                <td th:text="${product.getStatus()}">@mdo</td>
+                <td th:text="${product.getCategories()}">@mdo</td>
+                <td th:text="${product.getProvider()}">@mdo</td>
+                <td th:text="${product.getAddedByUsername()}">@mdo</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
+</body>
+</html>
