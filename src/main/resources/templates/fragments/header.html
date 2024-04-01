@@ -10,7 +10,7 @@
 <body>
     <nav class="navbar bg-body-tertiary fixed-top mb-5" th:fragment="header">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Inventory Management System</a>
+            <a class="navbar-brand" th:href="@{/}">Inventory Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,10 +29,10 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
+                                Products
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" th:href="@{/products/add-product}">Add Product</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
