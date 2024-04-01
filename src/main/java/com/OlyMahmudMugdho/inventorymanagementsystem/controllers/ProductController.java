@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -24,6 +25,13 @@ public class ProductController {
     }
 
     @GetMapping("")
+    public String allProductsPage(Model model) {
+        List<ProductDto> productDtos = productService.getAllProducts();
+        model.addAttribute("products", productDtos);
+        return "products/all-products-page";
+    }
+
+    @GetMapping("/add-product")
     public String addProductForm(Model model) {
         model.addAttribute("product", new ProductDto());
         return "products/add-product-form";
