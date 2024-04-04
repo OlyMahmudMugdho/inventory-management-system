@@ -6,13 +6,11 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.services.ProductService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -24,11 +22,24 @@ public class ProductController {
         this.productService = productService;
     }
 
+
     @GetMapping("")
     public String allProductsPage(Model model) {
         List<ProductDto> productDtos = productService.getAllProducts();
         model.addAttribute("products", productDtos);
         return "products/all-products-page";
+    }
+
+    @GetMapping("/{id}")
+    public String getProductDetails(@PathVariable long id, Model model) {
+        Optional<ProductDto> productDto = productService.getProductById((id));
+        if (productDto.isPresent()) {
+            model.addAttribute("product", productDto.get());
+        }
+        else {
+            model.addAttribute("product", null);
+        }
+        return "products/product-details";
     }
 
     @GetMapping("/add-product")
@@ -38,7 +49,7 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String addProduct(@ModelAttribute("product") ProductDto productDto, Model model, Authentication authentication) {
+    public String addProduct(@ModelAttribute("product") ProductDto productDto, Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         Set<User> users = new HashSet<>();
         users.add(user);
