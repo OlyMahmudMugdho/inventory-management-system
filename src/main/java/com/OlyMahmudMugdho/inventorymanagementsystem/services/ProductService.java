@@ -36,7 +36,7 @@ public class ProductService {
     }
 
     public Optional<ProductDto> getProductById(long id) {
-        Product product = productRepository.findById(id).orElse(null);
-        return Optional.ofNullable(productMapper.mapTo(product));
+        Optional<Product> product = productRepository.findById(id);
+        return product.map(productMapper::mapTo);
     }
 }
