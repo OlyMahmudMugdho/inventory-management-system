@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -32,5 +33,10 @@ public class ProductService {
             }
         }
         return productDtos;
+    }
+
+    public Optional<ProductDto> getProductById(long id) {
+        Product product = productRepository.findById(id).orElse(null);
+        return Optional.ofNullable(productMapper.mapTo(product));
     }
 }
