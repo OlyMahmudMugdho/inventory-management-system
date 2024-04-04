@@ -1,6 +1,7 @@
 package com.OlyMahmudMugdho.inventorymanagementsystem.controllers;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.ProductDto;
+import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Product;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.User;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.ProductService;
 import org.springframework.security.core.Authentication;
@@ -32,9 +33,9 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public String getProductDetails(@PathVariable long id, Model model) {
-        Optional<ProductDto> productDto = productService.getProductById((id));
-        if (productDto.isPresent()) {
-            model.addAttribute("product", productDto.get());
+        Optional<ProductDto> product = productService.getProductById((id));
+        if (product.isPresent()) {
+            model.addAttribute("product", product.get());
         }
         else {
             model.addAttribute("product", null);
