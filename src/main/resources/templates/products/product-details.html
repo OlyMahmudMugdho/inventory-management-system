@@ -11,17 +11,45 @@
 <nav th:replace="fragments/header :: header">
 </nav>
 
-<div class="container min-vh-100 d-flex flex-column align-items-center justify-content-start pt-5 w-100 ">
-    <div th:if="${product != null}" class="w-100 my-3">
-        <h3 class="text-center card py-3">Product Details</h3>
-        <article>
-            <div>
-                <h4>Product Name</h4>
-                <p th:text="${product.getName()}">name</p>
+<div class="container py-5">
+    <div th:if="${product != null}" class="card my-5 mb-5">
+        <h3 class="card-header text-center">Product Details</h3>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Product Name</h5>
+                    <p th:text="${product.getName()}" class="card-text"></p>
+                    <h5>Product Description</h5>
+                    <p th:text="${product.getDescription()}" class="card-text"></p>
+                    <h5>Stocks</h5>
+                    <p th:text="${product.getStocks()}" class="card-text"></p>
+                    <h5>Price</h5>
+                    <p th:text="${product.getPrice()}" class="card-text"></p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Unit Price</h5>
+                    <p th:text="${product.getUnitPrice()}" class="card-text"></p>
+                    <h5>Status</h5>
+                    <p th:text="${product.getStatus()}" class="card-text"></p>
+                    <h5>Added By</h5>
+                    <p th:text="${product.getAddedByUsername()}" class="card-text"></p>
+                    <h5>Categories</h5>
+                    <p th:text="${product.getCategories()}" class="card-text"></p>
+                    <h5>Provider</h5>
+                    <p th:text="${product.getProvider()}" class="card-text"></p>
+                    <h5>Added On</h5>
+                    <p th:text="${product.getAddedOn()}" class="card-text"></p>
+                    <h5>Removed</h5>
+                    <p th:text="${product.isRemoved()}" class="card-text"></p>
+                </div>
             </div>
-        </article>
+        </div>
+    </div>
+    <div th:if="${product == null}" class="alert alert-danger mt-3" role="alert">
+        Product Not Found...
     </div>
 </div>
+
 <script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
 </body>
 </html>
