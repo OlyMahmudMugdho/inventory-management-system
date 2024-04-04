@@ -35,6 +35,7 @@ public class ProductController {
     public String getProductDetails(@PathVariable long id, Model model) {
         Optional<ProductDto> product = productService.getProductById((id));
         if (product.isPresent()) {
+            System.out.println(product.get());
             model.addAttribute("product", product.get());
         }
         else {
