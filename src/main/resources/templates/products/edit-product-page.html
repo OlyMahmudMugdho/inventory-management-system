@@ -12,8 +12,13 @@
 </nav>
 <div class=" container min-vh-100 d-flex flex-column align-items-center justify-content-center pt-5 w-100 ">
     <div class="  d-flex flex-column justify-content-center align-items-center w-100 py-3">
-        <h3 class="bg-light shadow-lg rounded-2 w-50 text-primary text-center py-2">Add Product</h3>
+        <div class="d-flex flex-row w-100 justify-content-center">
+            <h3 class="bg-light shadow-lg rounded-2 w-50 text-primary text-center py-2">Edit Product</h3>
+        </div>
+
+
         <form method="post" action="products/add" th:replace="fragments/products/edit-product-form :: edit-product-form"></form>
+
     </div>
 </div>
 <script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
