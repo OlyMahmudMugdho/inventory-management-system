@@ -1,7 +1,6 @@
 package com.OlyMahmudMugdho.inventorymanagementsystem.controllers;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.ProductDto;
-import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Product;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.User;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.ProductService;
 import org.springframework.security.core.Authentication;
@@ -58,7 +57,25 @@ public class ProductController {
         productDto.setAddedBy(users);
         System.out.println(productDto);
         productService.addProduct(productDto);
-        return "redirect:/";
+        return "redirect:/products";
+    }
+
+    @GetMapping("/edit-product/{id}")
+    public String serveEditProductPage(Model model, @PathVariable long id) {
+        Optional<ProductDto> product = productService.getProductById((id));
+        if (product.isPresent()) {
+            model.addAttribute("product", product.get());
+            return "products/edit-product-page";
+        }
+        return "redirect:/products";
+    }
+
+    @PostMapping("/edit")
+    public String editProduct(@ModelAttribute("product") ProductDto productDto, Model model) {
+        System.out.println(productDto);
+        productService.editProduct(productDto);
+        model.addAttribute("added", true);
+        return "redirect:/products";
     }
 
 }
