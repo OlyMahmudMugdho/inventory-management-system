@@ -10,9 +10,11 @@
 <body>
 <form action="/products/edit" class="bg-light shadow-lg rounded-2 py-5 px-5 col-md-7 d-flex flex-column justify-content-center align-items-center "  method="post" th:fragment="edit-product-form" >
 
+        <input hidden="hidden" th:value="${product.getProductId()}"  type="text" class="form-control" placeholder="product id" id="productId" name="productId" >
+
     <div class="w-100 mb-3">
-        <label for="productId" class="form-label">Product ID</label>
-        <input th:value="${product.getProductId()}"  type="number" class="form-control" placeholder="product name" id="productId" name="productId" >
+        <label for="code" class="form-label">Product Code</label>
+        <input th:value="${product.getCode()}"  type="text" class="form-control" placeholder="product code" id="code" name="code" >
     </div>
 
     <div class="w-100 mb-3">
@@ -55,8 +57,9 @@
 
 
     <div class="w-100 my-3">
-        <button class="btn btn-primary text-white w-100">Save Product Information</button>
+        <button class="btn btn-primary text-white w-100 my-2">Save Product Information</button>
     </div>
+
 
 </form>
 </body>
