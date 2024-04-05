@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Product | IMS Spring Boot</title>
+</head>
+<body>
+<form action="/products/edit" class="bg-light shadow-lg rounded-2 py-5 px-5 col-md-7 d-flex flex-column justify-content-center align-items-center "  method="post" th:fragment="edit-product-form" >
+
+    <div class="w-100 mb-3">
+        <label for="productId" class="form-label">Product ID</label>
+        <input th:value="${product.getProductId()}"  type="number" class="form-control" placeholder="product name" id="productId" name="productId" >
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input th:value="${product.getName()}" type="text" class="form-control" placeholder="product name" id="name" name="name" >
+    </div>
+    <div class="w-100 mb-3">
+        <label for="description" class="form-label">Product Description</label>
+        <input th:value="${product.getDescription()}" type="text" class="form-control" id="description" placeholder="description" name="description" >
+    </div>
+    <div class="w-100 mb-3">
+        <label for="stocks" class="form-label">Available Stocks</label>
+        <input th:value="${product.getStocks()}" type="number" class="form-control" id="stocks" placeholder="description" name="stocks">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input th:value="${product.getPrice()}" type="number" class="form-control" id="price" placeholder="price" name="price">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="unitPrice" class="form-label">Unit Price</label>
+        <input th:value="${product.getUnitPrice()}" type="number" class="form-control" id="unitPrice" placeholder="unit price" name="unitPrice">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="status" class="form-label">Product Status</label>
+        <input th:value="${product.getStatus()}" type="text" class="form-control" id="status" placeholder="product status" name="status">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="categories" class="form-label">Category</label>
+        <input th:value="${product.getCategories()}" type="text" class="form-control" id="categories" placeholder="category" name="categories">
+    </div>
+
+    <div class="w-100 mb-3">
+        <label for="provider" class="form-label">Provider Name</label>
+        <input th:value="${product.getProvider()}" type="text" class="form-control" id="provider" placeholder="provider" name="provider">
+    </div>
+
+
+    <div class="w-100 my-3">
+        <button class="btn btn-primary text-white w-100">Save Product Information</button>
+    </div>
+
+</form>
+</body>
+</html>
