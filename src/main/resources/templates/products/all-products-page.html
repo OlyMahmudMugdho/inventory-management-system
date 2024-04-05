@@ -36,7 +36,7 @@
 
                     <ul class="dropdown-menu bg-gradient">
                         <li><a class="dropdown-item btn-link text-primary " th:href="@{products/{id}(id=${product.getProductId()})}">View</a></li>
-                        <li><a class="dropdown-item btn-link text-warning" href="#">Edit</a></li>
+                        <li><a class="dropdown-item btn-link text-warning" th:href="@{products/edit-product/{id}(id=${product.getProductId()})}">Edit</a></li>
                         <li><a class="dropdown-item btn-link text-danger" href="#">Delete</a></li>
                     </ul>
                 </td>
