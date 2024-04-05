@@ -15,8 +15,10 @@ import java.util.Set;
 @Entity(name = "products")
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id")
     private long productId;
+    private String code;
     private String name;
     private String description;
     private double stocks;
