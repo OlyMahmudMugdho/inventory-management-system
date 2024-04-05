@@ -10,9 +10,11 @@
 <body>
 <form action="/products/add" class="bg-light shadow-lg rounded-2 py-5 px-5 col-md-7 d-flex flex-column justify-content-center align-items-center "  method="post" th:fragment="product-form" >
 
+    <input hidden="hidden" th:value="${product.getProductId()}"  type="text" class="form-control" placeholder="product code" id="productId" name="productId" >
+
     <div class="w-100 mb-3">
-        <label for="productId" class="form-label">Product ID</label>
-        <input type="number" class="form-control" placeholder="product name" id="productId" name="productId" >
+        <label for="code" class="form-label">Product Code</label>
+        <input type="text" class="form-control" placeholder="product Code" id="code" name="code" >
     </div>
 
     <div class="w-100 mb-3">
@@ -21,11 +23,11 @@
     </div>
     <div class="w-100 mb-3">
         <label for="description" class="form-label">Product Description</label>
-        <input type="text" class="form-control" id="description" placeholder="description" name="description" >
+        <input type="text" class="form-control" id="description" placeholder="Description" name="description" >
     </div>
     <div class="w-100 mb-3">
         <label for="stocks" class="form-label">Available Stocks</label>
-        <input type="number" class="form-control" id="stocks" placeholder="description" name="stocks">
+        <input type="number" class="form-control" id="stocks" placeholder="Stocks" name="stocks">
     </div>
 
     <div class="w-100 mb-3">
