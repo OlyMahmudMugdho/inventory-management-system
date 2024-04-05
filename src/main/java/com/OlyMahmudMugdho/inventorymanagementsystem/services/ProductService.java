@@ -49,5 +49,8 @@ public class ProductService {
             return productMapper.mapTo(product);
     }
 
+    public void deleteProduct(long id) {
+        productRepository.deleteById(id);
+    }
 
 }
