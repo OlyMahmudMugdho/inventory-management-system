@@ -3,6 +3,7 @@ package com.OlyMahmudMugdho.inventorymanagementsystem.configs;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.User;
 import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.RoleRepository;
 import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.UserRepository;
+import jakarta.servlet.DispatcherType;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -51,6 +52,7 @@ public class SecurityConfig  {
                             .requestMatchers("/resources/**", "/js/**", "/styles/**","/css/**","/fragments/**").permitAll()
                             .requestMatchers("/login").permitAll()
                             .requestMatchers("/register").permitAll()
+                            .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                             //.requestMatchers("/").hasAuthority("ADMIN")
                             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                             .anyRequest().authenticated();
