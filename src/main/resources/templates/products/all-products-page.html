@@ -10,7 +10,15 @@
 <body class="bg-body-secondary">
 <nav th:replace="fragments/header :: header">
 </nav>
-<div  class=" container min-vh-100 d-flex flex-column align-items-center justify-content-start mt-5 pt-5 w-100 ">
+
+
+
+<div  class=" container position-relative  d-flex flex-column align-items-center justify-content-start mt-5 pt-5 w-100 ">
+    <div th:if="${param.updated}" class="alert my-2 position-absolute end-0 top-0 alert-success alert-dismissible fade show" role="alert">
+            <strong>Updated!</strong>
+            The product has updated.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <table class="table  table-responsive-sm text-center px-2">
         <thead class="table-dark ">
             <tr>
@@ -45,5 +53,6 @@
     </table>
 </div>
 <script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
+<script th:src="@{/js/custom-script.js}" ></script>
 </body>
 </html>
