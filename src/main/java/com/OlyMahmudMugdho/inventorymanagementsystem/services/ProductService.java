@@ -15,12 +15,10 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
-    private final ModelMapper modelMapper;
 
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper, ModelMapper modelMapper) {
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
-        this.modelMapper = modelMapper;
     }
 
     public Product addProduct(ProductDto productDto) {
@@ -45,12 +43,14 @@ public class ProductService {
 
     public ProductDto editProduct(ProductDto productDto) {
             Product product = productMapper.mapFrom(productDto);
+            System.out.println(product);
             productRepository.save(product);
             return productMapper.mapTo(product);
     }
 
-    public void deleteProduct(long id) {
-        productRepository.deleteById(id);
+    public void deleteProduct(ProductDto productDto) {
+        Product product = productMapper.mapFrom(productDto);
+        productRepository.delete(product);
     }
 
 }
