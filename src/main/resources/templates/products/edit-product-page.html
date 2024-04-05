@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
+    <title>Index</title>
+</head>
+<body class="bg-body-secondary">
+<nav th:replace="fragments/header :: header">
+</nav>
+<div class=" container min-vh-100 d-flex flex-column align-items-center justify-content-center pt-5 w-100 ">
+    <div class="  d-flex flex-column justify-content-center align-items-center w-100 py-3">
+        <h3 class="bg-light shadow-lg rounded-2 w-50 text-primary text-center py-2">Add Product</h3>
+        <form method="post" action="products/add" th:replace="fragments/products/edit-product-form :: edit-product-form"></form>
+    </div>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
+</body>
+</html>
