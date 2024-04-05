@@ -27,7 +27,7 @@
     <table class="table  table-responsive-sm text-center px-2">
         <thead class="table-dark ">
             <tr>
-                <th scope="col">#ID</th>
+                <th scope="col">Code</th>
                 <th scope="col">Name</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Price</th>
@@ -37,11 +37,11 @@
         </thead>
         <tbody   th:if="${!products.isEmpty()}">
             <tr th:each="product : ${products}" >
-                <th scope="row" th:text="${product.getProductId()}">wkfb</th>
+                <th scope="row" th:text="${product.getCode()}">Code</th>
                 <td th:text="${product.getName()}">Mark</td>
-                <td th:text="${product.getStocks()}">@mdo</td>
-                <td th:text="${product.getPrice()}">Otto</td>
-                <td th:text="${product.getStatus()}">@mdo</td>
+                <td th:text="${product.getStocks()}">Stocks</td>
+                <td th:text="${product.getPrice()}">Price</td>
+                <td th:text="${product.getStatus()}">Status</td>
                 <td class="dropdown">
                     <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Choose Action
