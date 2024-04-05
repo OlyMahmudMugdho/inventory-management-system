@@ -19,6 +19,11 @@
             The product has updated.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+    <div th:if="${param.deleted}" class="alert my-2 position-absolute end-0 top-0 alert-success alert-dismissible fade show" role="alert">
+        <strong>Deleted!</strong>
+        The product has deleted.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <table class="table  table-responsive-sm text-center px-2">
         <thead class="table-dark ">
             <tr>
@@ -45,7 +50,7 @@
                     <ul class="dropdown-menu bg-gradient">
                         <li><a class="dropdown-item btn-link text-primary " th:href="@{products/{id}(id=${product.getProductId()})}">View</a></li>
                         <li><a class="dropdown-item btn-link text-warning" th:href="@{products/edit-product/{id}(id=${product.getProductId()})}">Edit</a></li>
-                        <li><a class="dropdown-item btn-link text-danger" href="#">Delete</a></li>
+                        <li><a class="dropdown-item btn-link text-danger" th:href="@{products/delete-product/{id}(id=${product.getProductId()})}">Delete</a></li>
                     </ul>
                 </td>
             </tr>
