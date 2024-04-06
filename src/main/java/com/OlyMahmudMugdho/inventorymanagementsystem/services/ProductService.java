@@ -5,6 +5,8 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.ProductDto;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Product;
 import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.ProductRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -51,6 +53,11 @@ public class ProductService {
     public void deleteProduct(ProductDto productDto) {
         Product product = productMapper.mapFrom(productDto);
         productRepository.delete(product);
+    }
+
+    public Page<Product> getPaginatedProducts(Pageable pageable) {
+        Page<Product> products = productRepository.findAll(pageable);
+        return products;
     }
 
 }
