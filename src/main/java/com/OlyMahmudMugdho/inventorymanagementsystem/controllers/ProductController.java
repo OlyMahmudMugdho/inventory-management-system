@@ -1,32 +1,55 @@
 package com.OlyMahmudMugdho.inventorymanagementsystem.controllers;
 
+import com.OlyMahmudMugdho.inventorymanagementsystem.mappers.impl.ProductMapper;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.ProductDto;
+import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Product;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.User;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.ProductService;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+
+import java.util.*;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
     private final ProductService productService;
+    private ProductMapper productMapper;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ProductMapper productMapper) {
         this.productService = productService;
+        this.productMapper = productMapper;
     }
 
 
-    @GetMapping("")
+    @GetMapping("/old")
     public String allProductsPage(Model model) {
         List<ProductDto> productDtos = productService.getAllProducts();
         model.addAttribute("products", productDtos);
+        return "products/all-products-page";
+    }
+
+    @GetMapping("")
+    public String paginatedProductsPage(Model model,
+        @RequestParam(defaultValue = "1") int page,
+        @RequestParam(defaultValue = "2") int size
+    ) {
+        Pageable pagination = PageRequest.of(page, size);
+        Page<Product> products = productService.getPaginatedProducts(pagination);
+        List<ProductDto> productDtos = new ArrayList<>();
+        for (Product product : products.getContent()) {
+            productDtos.add(productMapper.mapTo(product));
+        }
+        model.addAttribute("products", productDtos);
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("currentPage", page);
         return "products/all-products-page";
     }
 
