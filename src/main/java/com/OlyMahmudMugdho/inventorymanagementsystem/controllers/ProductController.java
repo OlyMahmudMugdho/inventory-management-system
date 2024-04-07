@@ -54,9 +54,10 @@ public class ProductController {
         model.addAttribute("products", productDtos);
         model.addAttribute("pagination", pagination);
         model.addAttribute("currentPage", page);
-        System.out.println("current page = " + page);
+        System.out.println("total page = " + products.getTotalPages());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("pageNumbers", pageNumbers);
+        model.addAttribute("lastPage", products.getTotalPages() - 1);
         return "products/all-products-page";
     }
 
