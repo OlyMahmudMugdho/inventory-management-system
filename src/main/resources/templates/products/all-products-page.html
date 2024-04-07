@@ -26,7 +26,7 @@
         The product has deleted.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <table class="table  table-responsive text-center px-2">
+    <table class="mb-5 table table-responsive text-center px-2">
         <thead class="table-dark ">
             <tr>
                 <th scope="col">Code</th>
@@ -48,16 +48,25 @@
             </tr>
         </tbody>
     </table>
-    <nav aria-label="...">
+    <nav class="mt-5" aria-label="...">
         <ul class="pagination">
-            <li class="page-item disabled">
-                <span class="page-link">Previous</span>
+            <li class="page-item " th:classappend="${pagination.getPageNumber() == 0 || pagination.getPageNumber() == null} ? disabled : baseC">
+                <a th:href="@{products(page=${pagination.getPageNumber() - 1},size='2')}" class="page-link">Previous</a>
             </li>
-            <li th:each="pageNumber : ${pageNumbers}" class="page-item active" aria-current="page">
-                <a th:href="@{products(page=${pageNumber},size='2')}" th:text="${pageNumber}" class="page-link">2</a>
+            <li th:each="pageNumber : ${pageNumbers}" class="page-item " aria-current="page">
+                <a th:if="${pageNumber < 3 }" th:href="@{products(page=${pageNumber},size='2')}" th:classappend="${pagination.getPageNumber() == pageNumber} ? active : baseC" th:text="${pageNumber + 1}" class="page-link ">2</a>
             </li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+
+            <li class="mt-3 px-1">
+                ......
+            </li>
+
+            <li th:if="${totalPages} > 3" class="page-item " aria-current="page">
+                <a th:href="@{products(page=${lastPage},size='2')}" th:classappend="${pagination.getPageNumber() == lastPage} ? active : baseC" th:text="${lastPage + 1}" class="page-link ">lp</a>
+            </li>
+
+            <li th:classappend="${pagination.getPageNumber() == lastPage} ? disabled : baseC" class="page-item">
+                <a class="page-link" th:href="@{products(page=${pagination.getPageNumber() + 1},size='2')}">Next</a>
             </li>
         </ul>
     </nav>
