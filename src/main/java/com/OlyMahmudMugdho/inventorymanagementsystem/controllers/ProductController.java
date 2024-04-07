@@ -38,7 +38,7 @@ public class ProductController {
 
     @GetMapping("")
     public String paginatedProductsPage(Model model,
-        @RequestParam(defaultValue = "1") int page,
+        @RequestParam(defaultValue = "0") int page,
         @RequestParam(defaultValue = "2") int size
     ) {
         Pageable pagination = PageRequest.of(page, size);
@@ -47,9 +47,16 @@ public class ProductController {
         for (Product product : products.getContent()) {
             productDtos.add(productMapper.mapTo(product));
         }
+        List<Integer> pageNumbers = new ArrayList<>();
+        for (int i = 0; i < products.getTotalPages(); i++) {
+            pageNumbers.add(i);
+        }
         model.addAttribute("products", productDtos);
         model.addAttribute("pagination", pagination);
         model.addAttribute("currentPage", page);
+        System.out.println("current page = " + page);
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("pageNumbers", pageNumbers);
         return "products/all-products-page";
     }
 
