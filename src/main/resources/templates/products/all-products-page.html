@@ -41,9 +41,9 @@
                 <td th:text="${#strings.abbreviate(product.getName(),10)}">Name</td>
                 <td th:text="${product.getStatus()}">Status</td>
                 <td class="text-center">
-                    <a th:href="@{/products/{id}(id=${product.getProductId()})}" class="nav-link mx-2 fa-sharp fa-regular fa-eye"></a>
-                    <a th:href="@{/products/edit-product/{id}(id=${product.getProductId()})}" class="nav-link mx-2 fa-sharp fa-regular fa-pen-to-square"></a>
-                    <a th:href="@{/products/delete-product/{id}(id=${product.getProductId()})}" class="nav-link mx-2 fa-sharp fa-regular fa-trash-can"></a>
+                    <a th:href="@{/products/{id}(id=${product.getProductId()})}" class="nav-link mx-1 fa-sharp fa-regular fa-eye"></a>
+                    <a th:href="@{/products/edit-product/{id}(id=${product.getProductId()})}" class="nav-link mx-1  fa-sharp fa-regular fa-pen-to-square"></a>
+                    <a th:href="@{/products/delete-product/{id}(id=${product.getProductId()})}" class="nav-link mx-1  fa-sharp fa-regular fa-trash-can"></a>
                 </td>
             </tr>
         </tbody>
