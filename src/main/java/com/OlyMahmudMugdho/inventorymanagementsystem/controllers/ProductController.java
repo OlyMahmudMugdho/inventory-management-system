@@ -58,6 +58,7 @@ public class ProductController {
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("pageNumbers", pageNumbers);
         model.addAttribute("lastPage", products.getTotalPages() - 1);
+        model.addAttribute("size",size);
         return "products/all-products-page";
     }
 
