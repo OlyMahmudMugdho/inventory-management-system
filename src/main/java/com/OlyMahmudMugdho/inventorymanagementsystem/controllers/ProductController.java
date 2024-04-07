@@ -39,7 +39,7 @@ public class ProductController {
     @GetMapping("")
     public String paginatedProductsPage(Model model,
         @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "2") int size
+        @RequestParam(defaultValue = "5") int size
     ) {
         Pageable pagination = PageRequest.of(page, size);
         Page<Product> products = productService.getPaginatedProducts(pagination);
