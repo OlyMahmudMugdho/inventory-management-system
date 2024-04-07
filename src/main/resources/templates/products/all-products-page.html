@@ -37,8 +37,8 @@
         </thead>
         <tbody   th:if="${!products.isEmpty()}">
             <tr th:each="product : ${products}" >
-                <th scope="row" th:text="${product.getCode()}">Code</th>
-                <td th:text="${product.getName()}">Name</td>
+                <th scope="row" th:text="${#strings.abbreviate(product.getCode(),10)}">Code</th>
+                <td th:text="${#strings.abbreviate(product.getName(),10)}">Name</td>
                 <td th:text="${product.getStatus()}">Status</td>
                 <td class="text-center">
                     <a th:href="@{/products/{id}(id=${product.getProductId()})}" class="nav-link mx-2 fa-sharp fa-regular fa-eye"></a>
