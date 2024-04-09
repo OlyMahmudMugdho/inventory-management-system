@@ -48,7 +48,7 @@
             </tr>
         </tbody>
     </table>
-    <nav class="mt-5" aria-label="...">
+    <nav th:if="${totalPages > 1}" class="mt-5" aria-label="...">
         <ul class="pagination">
             <li class="page-item " th:classappend="${pagination.getPageNumber() == 0 || pagination.getPageNumber() == null} ? disabled : baseC">
                 <a th:href="@{products(page=${pagination.getPageNumber() - 1},size=${size})}" class="page-link">Previous</a>
