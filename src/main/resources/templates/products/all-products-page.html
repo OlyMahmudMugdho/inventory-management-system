@@ -16,6 +16,7 @@
 
 
 
+
 <div  class=" container position-relative  d-flex flex-column align-items-center justify-content-start mt-5 pt-5 w-100 ">
     <div th:if="${param.updated}" class="alert my-2 position-absolute end-0 top-0 alert-success alert-dismissible fade show" role="alert">
             <strong>Updated!</strong>
@@ -27,6 +28,19 @@
         The product has deleted.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+
+    <div class="d-flex flex-row justify-content-end align-content-center w-100">
+
+        <form th:action="@{/products/search}"  class="input-group flex-nowrap py-3 w-25">
+
+            <span class=" input-group-text" id="addon-wrapping">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+
+            <input id="product-search-field" name="keyword" type="text" class="form-control" placeholder="Search" aria-label="Username" aria-describedby="addon-wrapping">
+        </form>
+    </div>
+
     <table class="mb-5 table table-responsive text-center px-2">
         <thead class="table-dark ">
             <tr>
