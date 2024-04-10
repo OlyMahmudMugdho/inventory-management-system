@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/js/bootstrap.min.js}" ></script>
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script th:src="@{https://kit.fontawesome.com/a076d05399.js}" crossorigin="anonymous"></script>
+    <title>All Products</title>
+</head>
+<body class="bg-body-secondary">
+
+<nav th:replace="fragments/header :: header">
+</nav>
+
+
+<div  class=" container position-relative  d-flex flex-column align-items-center justify-content-start mt-5 pt-5 w-100 ">
+
+
+    <h4 class="">Search Result</h4>
+
+    <div th:if="${param.updated}" class="alert my-2 position-absolute end-0 top-0 alert-success alert-dismissible fade show" role="alert">
+        <strong>Updated!</strong>
+        The product has updated.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:if="${param.deleted}" class="alert my-2 position-absolute end-0 top-0 alert-success alert-dismissible fade show" role="alert">
+        <strong>Deleted!</strong>
+        The product has deleted.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <table class="mb-5 table table-responsive text-center px-2">
+        <thead class="table-dark ">
+        <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody   th:if="${!products.isEmpty()}">
+        <tr th:each="product : ${products}" >
+            <th scope="row" th:text="${#strings.abbreviate(product.getCode(),10)}">Code</th>
+            <td th:text="${#strings.abbreviate(product.getName(),10)}">Name</td>
+            <td th:text="${product.getStatus()}">Status</td>
+            <td class="text-center">
+                <a th:href="@{/products/{id}(id=${product.getProductId()})}" class="nav-link mx-1 fa-sharp fa-regular fa-eye"></a>
+                <a th:href="@{/products/edit-product/{id}(id=${product.getProductId()})}" class="nav-link mx-1  fa-sharp fa-regular fa-pen-to-square"></a>
+                <a th:href="@{/products/delete-product/{id}(id=${product.getProductId()})}" class="nav-link mx-1  fa-sharp fa-regular fa-trash-can"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <nav th:if="${totalPages > 1}" class="mt-5" aria-label="...">
+        <ul class="pagination">
+            <li class="page-item " th:classappend="${pagination.getPageNumber() == 0 || pagination.getPageNumber() == null} ? disabled : baseC">
+                <a th:href="@{products(page=${pagination.getPageNumber() - 1},size=${size})}" class="page-link">Previous</a>
+            </li>
+            <li th:each="pageNumber : ${pageNumbers}" class="page-item " aria-current="page">
+                <a th:if="${pageNumber < 3 }" th:href="@{products(page=${pageNumber},size=${size})}" th:classappend="${pagination.getPageNumber() == pageNumber} ? active : baseC" th:text="${pageNumber + 1}" class="page-link ">2</a>
+            </li>
+
+            <li class="mt-3 px-1">
+                ......
+            </li>
+
+            <li th:if="${totalPages} > 3" class="page-item " aria-current="page">
+                <a th:href="@{products(page=${lastPage},size=${size})}" th:classappend="${pagination.getPageNumber() == lastPage} ? active : baseC" th:text="${lastPage + 1}" class="page-link ">lp</a>
+            </li>
+
+            <li th:classappend="${pagination.getPageNumber() == lastPage} ? disabled : baseC" class="page-item">
+                <a class="page-link" th:href="@{products(page=${pagination.getPageNumber() + 1},size=${size})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
+<script th:src="@{/js/custom-script.js}" ></script>
+
+
+</body>
+</html>
