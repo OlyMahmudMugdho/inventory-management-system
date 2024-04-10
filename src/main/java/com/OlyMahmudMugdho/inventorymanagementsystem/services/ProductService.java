@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +60,12 @@ public class ProductService {
         Page<Product> products = productRepository.findAll(pageable);
         return products;
     }
+
+    public Page<Product> getSearchedProducts(String keyword, Pageable pageable){
+        Page<Product> products = productRepository.search(keyword, pageable);
+        System.out.println(products);
+        return products;
+    }
+
 
 }
