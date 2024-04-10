@@ -62,6 +62,7 @@ public class ProductController {
         return "products/all-products-page";
     }
 
+
     @GetMapping("/{id}")
     public String getProductDetails(@PathVariable long id, Model model) {
         Optional<ProductDto> product = productService.getProductById((id));
@@ -125,6 +126,35 @@ public class ProductController {
     public String removeAttribute(RedirectAttributes redirectAttributes){
         redirectAttributes.addAttribute("updated",false);
         return "redirect:/products";
+    }
+
+
+    @GetMapping("/search")
+    public String search(
+            @RequestParam(defaultValue = " ") String keyword,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            Model model
+    ) {
+        Pageable pagination = PageRequest.of(page, size);
+        Page<Product> products = productService.getSearchedProducts(keyword, pagination);
+        List<ProductDto> productDtos = new ArrayList<>();
+        for (Product product : products.getContent()) {
+            productDtos.add(productMapper.mapTo(product));
+        }
+        List<Integer> pageNumbers = new ArrayList<>();
+        for (int i = 0; i < products.getTotalPages(); i++) {
+            pageNumbers.add(i);
+        }
+        model.addAttribute("products", productDtos);
+        model.addAttribute("pagination", pagination);
+        model.addAttribute("currentPage", page);
+        System.out.println("total page = " + products.getTotalPages());
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("pageNumbers", pageNumbers);
+        model.addAttribute("lastPage", products.getTotalPages() - 1);
+        model.addAttribute("size",size);
+        return "products/searched-products-page";
     }
 
 }
