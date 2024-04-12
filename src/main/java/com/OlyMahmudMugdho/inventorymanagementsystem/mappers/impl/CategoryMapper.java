@@ -4,8 +4,9 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.mappers.Mapper;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.CategoryDto;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Category;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CategoryMapper implements Mapper<Category, CategoryDto> {
 
     private ModelMapper modelMapper;
