@@ -85,7 +85,7 @@ public class CategoryController {
         return "categories/category-details";
     }
 
-    @GetMapping("/edit-product")
+    @GetMapping("/edit-category/{id}")
     public String editProductPage(Model model, @PathVariable long id) {
         Optional<Category> categoryFetched = categoryService.getCategoryById(id);
         if (categoryFetched.isEmpty()) {
