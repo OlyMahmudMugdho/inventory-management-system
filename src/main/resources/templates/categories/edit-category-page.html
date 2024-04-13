@@ -17,6 +17,9 @@
 <div   class=" container position-relative  d-flex flex-column align-items-center justify-content-start mt-5 pt-5 w-100 ">
     <h3 class="bg-light shadow-lg rounded-2 w-50 text-primary text-center py-2">Add Category</h3>
     <form th:action="@{/categories/edit}" th:object="${category}" class="bg-light shadow-lg rounded-2 py-5 px-5 col-md-7 d-flex flex-column justify-content-center align-items-center "  method="post">
+
+            <input hidden="hidden" th:value="${category.getCategoryId()}" th:field="*{categoryId}" type="text" >
+
         <div class="mb-3 w-100">
             <label for="categoryCode" class="form-label">Category Code</label>
             <input th:value="${category.getCategoryCode()}" th:field="*{categoryCode}" type="text" class="form-control" id="categoryCode" placeholder="Category Code">
