@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/categories")
@@ -71,6 +72,17 @@ public class CategoryController {
         categoryService.createCategory(recievedCategory);
         redirectAttributes.addAttribute("added", true);
         return "redirect:/categories";
+    }
+
+    @GetMapping("/{id}")
+    public String getCategoryDetails(Model model, @PathVariable() long id){
+        Optional<Category> categoryFetched = categoryService.getCategoryById(id);
+        if (categoryFetched.isEmpty()) {
+            return "redirect:/categories";
+        }
+        CategoryDto categoryDto = categoryMapper.mapTo(categoryFetched.get());
+        model.addAttribute("category", categoryDto);
+        return "categories/category-details";
     }
 
 }
