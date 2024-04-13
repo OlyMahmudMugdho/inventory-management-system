@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CategoryService {
     private CategoryRepository categoryRepository;
@@ -20,5 +22,9 @@ public class CategoryService {
 
     public Page<Category> getPaginatedCategories(Pageable pageable) {
         return categoryRepository.findAll(pageable);
+    }
+
+    public Optional<Category> getCategoryById(long id) {
+        return categoryRepository.findById(id);
     }
 }
