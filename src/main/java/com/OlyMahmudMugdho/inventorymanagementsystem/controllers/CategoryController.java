@@ -85,4 +85,15 @@ public class CategoryController {
         return "categories/category-details";
     }
 
+    @GetMapping("/edit-product")
+    public String editProductPage(Model model, @PathVariable long id) {
+        Optional<Category> categoryFetched = categoryService.getCategoryById(id);
+        if (categoryFetched.isEmpty()) {
+            return "redirect:/categories";
+        }
+        CategoryDto categoryDto = categoryMapper.mapTo(categoryFetched.get());
+        model.addAttribute("category", categoryDto);
+        return "categories/edit-category-page";
+    }
+
 }
