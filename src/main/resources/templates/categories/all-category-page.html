@@ -55,7 +55,7 @@
                 <td th:text="${#strings.abbreviate(category.getCategoryName(),10)}">Name</td>
                 <td class="text-center">
                     <a th:href="@{/categories/{id}(id=${category.getCategoryId()})}"  class="nav-link mx-1 fa-sharp fa-regular fa-eye"></a>
-                    <a class="nav-link mx-1  fa-sharp fa-regular fa-pen-to-square"></a>
+                    <a th:href="@{/categories/edit-category/{id}(id=${category.getCategoryId()})}" class="nav-link mx-1  fa-sharp fa-regular fa-pen-to-square"></a>
                     <a class="nav-link mx-1  fa-sharp fa-regular fa-trash-can"></a>
                 </td>
             </tr>
