@@ -70,7 +70,7 @@ public class CategoryController {
         Category recievedCategory = categoryMapper.mapFrom(categoryDto);
         categoryService.createCategory(recievedCategory);
         redirectAttributes.addAttribute("added", true);
-        return "redirect:/";
+        return "redirect:/categories";
     }
 
 }
