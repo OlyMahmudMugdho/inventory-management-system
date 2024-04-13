@@ -19,11 +19,11 @@
     <form th:action="@{/categories/add}" th:object="${category}" class="bg-light shadow-lg rounded-2 py-5 px-5 col-md-7 d-flex flex-column justify-content-center align-items-center "  method="post">
         <div class="mb-3 w-100">
             <label for="categoryCode" class="form-label">Category Code</label>
-            <input th:field="*{categoryCode}" type="text" class="form-control" id="categoryCode" placeholder="Category Code">
+            <input required th:field="*{categoryCode}" type="text" class="form-control" id="categoryCode" placeholder="Category Code">
         </div>
         <div class="mb-3 w-100">
             <label for="categoryName" class="form-label">Category Name</label>
-            <input th:field="*{categoryName}" type="text" class="form-control" id="categoryName" placeholder="Category Name">
+            <input required th:field="*{categoryName}" type="text" class="form-control" id="categoryName" placeholder="Category Name">
         </div>
         <div class="w-100 my-3">
             <button class="btn btn-primary text-white w-100">Save Category Information</button>
