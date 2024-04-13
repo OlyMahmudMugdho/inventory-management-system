@@ -108,4 +108,15 @@ public class CategoryController {
         return "redirect:/categories";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteCategory(@PathVariable long id, RedirectAttributes redirectAttributes) {
+        Optional<Category> category = categoryService.getCategoryById(id);
+        if (category.isEmpty()){
+            return "redirect:/categories";
+        }
+        categoryService.deleteCategoryById(id);
+        redirectAttributes.addAttribute("deleted","true");
+        return "redirect:/categories";
+    }
+
 }
