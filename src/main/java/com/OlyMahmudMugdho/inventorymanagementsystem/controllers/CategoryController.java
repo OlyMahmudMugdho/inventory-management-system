@@ -96,4 +96,16 @@ public class CategoryController {
         return "categories/edit-category-page";
     }
 
+    @PostMapping("/edit")
+    public String editCategory(@ModelAttribute("category") CategoryDto categoryDto,  RedirectAttributes redirectAttributes) {
+        Optional<Category> categoryFetched = categoryService.getCategoryById(categoryDto.getCategoryId());
+        if (categoryFetched.isEmpty()) {
+            return "redirect:/categories";
+        }
+        Category category = categoryMapper.mapFrom(categoryDto);
+        categoryService.editCategory(category);
+        redirectAttributes.addAttribute("updated",true);
+        return "redirect:/categories";
+    }
+
 }
