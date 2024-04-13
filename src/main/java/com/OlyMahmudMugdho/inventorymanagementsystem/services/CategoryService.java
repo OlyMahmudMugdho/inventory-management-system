@@ -29,7 +29,11 @@ public class CategoryService {
     }
 
     public Category editCategory(Category category) {
-        System.out.println(category);
         return categoryRepository.save(category);
     }
+
+    public void deleteCategoryById(long id) {
+        categoryRepository.deleteById(id);
+    }
+
 }
