@@ -19,6 +19,7 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private long id;
     private String name;
+    @Column(unique = true)
     private String username;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
