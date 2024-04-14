@@ -54,9 +54,11 @@ public class RegistrationController {
         roles.add(role);
         try {
             userService.addUser(registerForm.toUser(passwordEncoder, roles));
+
         }
         catch (Exception e) {
             redirectAttributes.addAttribute("error",true);
+
         }
         //userRepository.save(registerForm.toUser(passwordEncoder));
         return "redirect:/";
