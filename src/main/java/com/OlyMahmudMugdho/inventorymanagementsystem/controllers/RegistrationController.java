@@ -6,6 +6,7 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.services.IUserService;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.RoleService;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,11 +55,13 @@ public class RegistrationController {
         roles.add(role);
         try {
             userService.addUser(registerForm.toUser(passwordEncoder, roles));
-
         }
         catch (Exception e) {
+            if (e instanceof DataIntegrityViolationException){
+                redirectAttributes.addAttribute("exists","user already exists");
+            }
             redirectAttributes.addAttribute("error",true);
-
+            return "redirect:/register";
         }
         //userRepository.save(registerForm.toUser(passwordEncoder));
         return "redirect:/";
