@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.HashSet;
@@ -46,12 +47,17 @@ public class RegistrationController {
     }
 
     @PostMapping("")
-    public String register(@ModelAttribute("registrationForm") RegistrationForm registerForm, Model model){
+    public String register(@ModelAttribute("registrationForm") RegistrationForm registerForm, Model model, RedirectAttributes redirectAttributes){
         System.out.println(registerForm);
         Role role = roleService.getRoleByName("USER");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
-        userService.addUser(registerForm.toUser(passwordEncoder, roles));
+        try {
+            userService.addUser(registerForm.toUser(passwordEncoder, roles));
+        }
+        catch (Exception e) {
+            redirectAttributes.addAttribute("error",true);
+        }
         //userRepository.save(registerForm.toUser(passwordEncoder));
         return "redirect:/";
     }
