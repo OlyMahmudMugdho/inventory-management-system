@@ -15,6 +15,12 @@
 
     <h1>Registration</h1>
 
+    <div class="text-danger" th:if="${param.error}">
+        <h5>
+            Error! <span th:if="${param.exists}" th:text="${param.exists}"></span>
+        </h5>
+    </div>
+
     <form th:action="@{/register}" th:object="${registrationForm}" method="post" class="col-md-5">
         <div class="col">
             <div class="col">
