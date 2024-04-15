@@ -115,8 +115,19 @@ public class ProductController {
     @GetMapping("/edit-product/{id}")
     public String serveEditProductPage(Model model, @PathVariable long id) {
         Optional<ProductDto> product = productService.getProductById((id));
+
         if (product.isPresent()) {
-            model.addAttribute("product", product.get());
+            List<Category> categories = categoryService.getAllCategories();
+
+            ProductDto productDto = product.get();
+            long catId = Long.parseLong(productDto.getCategories());
+            String categoryName = categoryService.getCategoryById(catId).get().getCategoryName();
+            productDto.setCategories(categoryName);
+            model.addAttribute("product", productDto);
+
+            model.addAttribute("categories", categories);
+
+            model.addAttribute("defaultCategory", catId);
             model.addAttribute("productId", id);
             return "products/edit-product-page";
         }
