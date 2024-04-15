@@ -1,9 +1,13 @@
 package com.OlyMahmudMugdho.inventorymanagementsystem.controllers;
 
+import com.OlyMahmudMugdho.inventorymanagementsystem.mappers.impl.CategoryMapper;
 import com.OlyMahmudMugdho.inventorymanagementsystem.mappers.impl.ProductMapper;
+import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.CategoryDto;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.ProductDto;
+import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Category;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Product;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.User;
+import com.OlyMahmudMugdho.inventorymanagementsystem.services.CategoryService;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -16,22 +20,29 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
     private final ProductService productService;
+    private final CategoryService categoryService;
+    private final CategoryMapper categoryMapper;
     private ProductMapper productMapper;
 
-    public ProductController(ProductService productService, ProductMapper productMapper) {
+    public ProductController(ProductService productService, CategoryService categoryService, ProductMapper productMapper, CategoryMapper categoryMapper) {
         this.productService = productService;
+        this.categoryService = categoryService;
         this.productMapper = productMapper;
+        this.categoryMapper = categoryMapper;
     }
 
 
     @GetMapping("/old")
     public String allProductsPage(Model model) {
         List<ProductDto> productDtos = productService.getAllProducts();
+
         model.addAttribute("products", productDtos);
         return "products/all-products-page";
     }
@@ -78,6 +89,10 @@ public class ProductController {
 
     @GetMapping("/add-product")
     public String addProductForm(Model model) {
+        List<Category> categories = categoryService.getAllCategories();
+        List<CategoryDto> categoryDtos = categories.stream().map(c -> categoryMapper.mapTo(c)).collect(Collectors.toList());
+        System.out.println(categoryDtos);
+        model.addAttribute("categories", categories);
         model.addAttribute("product", new ProductDto());
         return "products/add-product-form";
     }
