@@ -79,7 +79,11 @@ public class ProductController {
         Optional<ProductDto> product = productService.getProductById((id));
         if (product.isPresent()) {
             System.out.println(product.get());
-            model.addAttribute("product", product.get());
+            ProductDto productDto = product.get();
+            long catId = Long.parseLong(productDto.getCategories());
+            String categoryName = categoryService.getCategoryById(catId).get().getCategoryName();
+            productDto.setCategories(categoryName);
+            model.addAttribute("product", productDto);
         }
         else {
             model.addAttribute("product", null);
