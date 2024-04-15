@@ -46,8 +46,9 @@
     </div>
 
     <div class="w-100 mb-3">
-        <label for="categories" class="form-label">Category</label>
-        <input th:value="${product.getCategories()}" type="text" class="form-control" id="categories" placeholder="category" name="categories">
+        <select th:object="${categories}" name="categories" class="form-select">
+            <option th:selected="${category.getCategoryId() == defaultCategory}" th:each="category : ${categories}" th:value="${category.getCategoryId()}" th:text="${category.getCategoryName()}">C1</option>
+        </select>
     </div>
 
     <div class="w-100 mb-3">
