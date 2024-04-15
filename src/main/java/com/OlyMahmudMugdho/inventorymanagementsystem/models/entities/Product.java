@@ -34,7 +34,14 @@ public class Product {
 //    )
 //    @Column(name = "product_category")
     //private Set<Category> categories;
-    private String categories;
+
+    @ManyToOne
+    @JoinTable(
+            name = "product_category_junction",
+            joinColumns = {@JoinColumn(name = "category_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
+    )
+    private Category categories;
 
 //    @ManyToMany
 //    @JoinTable(
