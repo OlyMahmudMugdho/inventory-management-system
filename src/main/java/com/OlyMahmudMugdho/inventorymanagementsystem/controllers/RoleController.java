@@ -30,4 +30,10 @@ public class RoleController {
         model.addAttribute("roles", roles);
         return "roles/all-roles-page";
     }
+
+    @GetMapping("/add-role")
+    public String addRolePage(Model model) {
+        model.addAttribute("role", new RoleDto());
+        return "roles/add-role-page";
+    }
 }
