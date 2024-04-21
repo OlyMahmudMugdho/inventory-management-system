@@ -23,4 +23,8 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
+    public Role createRole(Role role) {
+        return roleRepository.save(role);
+    }
+
 }
