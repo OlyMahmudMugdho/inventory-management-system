@@ -39,7 +39,7 @@ public class RoleController {
         return "roles/add-role-page";
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public String addRole(@ModelAttribute("role") RoleDto roleDto) {
         Role role = roleMapper.mapFrom(roleDto);
         roleService.createRole(role);
