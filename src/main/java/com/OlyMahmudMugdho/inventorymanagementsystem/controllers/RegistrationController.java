@@ -52,6 +52,7 @@ public class RegistrationController {
         System.out.println(registerForm);
         Role role = roleService.getRoleByName("USER");
         Set<Role> roles = new HashSet<>();
+        registerForm.setRoles(roles);
         roles.add(role);
         try {
             userService.addUser(registerForm.toUser(passwordEncoder, roles));
