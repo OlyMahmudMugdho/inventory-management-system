@@ -7,6 +7,8 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.services.RoleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -35,5 +37,12 @@ public class RoleController {
     public String addRolePage(Model model) {
         model.addAttribute("role", new RoleDto());
         return "roles/add-role-page";
+    }
+
+    @PostMapping
+    public String addRole(@ModelAttribute("role") RoleDto roleDto) {
+        Role role = roleMapper.mapFrom(roleDto);
+        roleService.createRole(role);
+        return "redirect:/roles";
     }
 }
