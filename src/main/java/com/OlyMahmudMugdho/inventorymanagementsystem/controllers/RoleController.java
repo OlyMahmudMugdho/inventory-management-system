@@ -6,12 +6,10 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.RoleDto;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.RoleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -44,5 +42,14 @@ public class RoleController {
         Role role = roleMapper.mapFrom(roleDto);
         roleService.createRole(role);
         return "redirect:/roles";
+    }
+
+    @GetMapping("/{id}")
+    public String getRoleDeatils(@PathVariable("id") int id, Model model) {
+        Optional<Role> role = roleService.getRoleById(id);
+        if (role.isPresent()) {
+            model.addAttribute("role", role.get());
+        }
+        return "roles/role-details-page";
     }
 }
