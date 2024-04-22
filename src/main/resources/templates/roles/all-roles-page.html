@@ -44,15 +44,15 @@
     <table class="mb-5 table table-responsive text-center px-2">
         <thead class="table-dark ">
         <tr>
-            <th scope="col">Code</th>
-            <th scope="col">Name</th>
+            <th scope="col">Role ID</th>
+            <th scope="col">Role Name</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody   th:if="${!roles.isEmpty()}">
         <tr th:each="role : ${roles}" >
-            <th scope="row" th:text="${#strings.abbreviate(role.getRoleId(),10)}">Code</th>
-            <td th:text="${#strings.abbreviate(role.getAuthority(),10)}">Name</td>
+            <th scope="row" th:text="${#strings.abbreviate(role.getRoleId(),10)}">Role ID</th>
+            <td th:text="${#strings.abbreviate(role.getAuthority(),10)}">Role Name</td>
             <td class="text-center">
                 <a th:href="@{/roles/{id}(id=${role.getRoleId()})}"  class="nav-link mx-1 fa-sharp fa-regular fa-eye"></a>
                 <a th:href="@{/roles/edit-role/{id}(id=${role.getRoleId()})}" class="nav-link mx-1  fa-sharp fa-regular fa-pen-to-square"></a>
