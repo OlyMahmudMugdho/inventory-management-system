@@ -25,8 +25,10 @@ public class InventoryManagementSystemApplication {
 	@Bean
 	public CommandLineRunner startup() {
 		return args -> {
-			Role role = new Role(1,"USER");
-			roleService.createRole(role);
+			Role user = new Role(1,"USER");
+			Role admin = new Role(2,"ADMIN");
+			roleService.createRole(user);
+			roleService.createRole(admin);
 			System.out.println("role created");
 		};
 	}
