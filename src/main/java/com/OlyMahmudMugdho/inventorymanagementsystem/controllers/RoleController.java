@@ -4,17 +4,19 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.mappers.impl.RoleMapper;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.Role;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.RoleDto;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.RoleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/roles")
 public class RoleController {
+    private static final Logger log = LoggerFactory.getLogger(RoleController.class);
     private final RoleService roleService;
     private RoleMapper roleMapper;
 
@@ -53,10 +55,12 @@ public class RoleController {
         return "roles/role-details-page";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteRole(@PathVariable("id") int id) {
         Optional<Role> role = roleService.getRoleById(id);
         if (role.isPresent()) {
+            log.info(role.get().toString());
+            System.out.println(role.get().toString());
             roleService.deleteRoleById(id);
         }
         return "redirect:/roles";
