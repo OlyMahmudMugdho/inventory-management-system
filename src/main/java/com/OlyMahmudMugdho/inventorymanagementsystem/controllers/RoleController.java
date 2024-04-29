@@ -52,4 +52,13 @@ public class RoleController {
         }
         return "roles/role-details-page";
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteRole(@PathVariable("id") int id) {
+        Optional<Role> role = roleService.getRoleById(id);
+        if (role.isPresent()) {
+            roleService.deleteRoleById(id);
+        }
+        return "redirect:/roles";
+    }
 }
