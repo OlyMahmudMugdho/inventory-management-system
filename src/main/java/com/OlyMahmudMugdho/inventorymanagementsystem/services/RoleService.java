@@ -33,4 +33,8 @@ public class RoleService {
         return role;
     }
 
+    public void deleteRoleById(int id) {
+        roleRepository.deleteById(id);
+    }
+
 }
