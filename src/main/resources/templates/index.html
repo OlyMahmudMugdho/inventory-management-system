@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script th:src="@{/js/bootstrap.min.js}" ></script>
     <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
+
+    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script th:src="@{https://kit.fontawesome.com/a076d05399.js}" crossorigin="anonymous"></script>
+
     <title>Index</title>
 </head>
 <body>
@@ -12,7 +17,31 @@
         <nav th:replace="fragments/header :: header">
 
         </nav>
-        <h1 class="text-success text-red-500 pt-5 ">This is homepage</h1>
+        <main class="d-flex flex-column justify-content-center align-content-center my-4">
+
+            <div class="py-4"></div>
+
+            <div class="my-4 d-flex flex-row justify-content-center align-content-center flex-wrap gap-2">
+                <div class="card bg-warning bg-opacity-50">
+                    <div class="card-body">
+                        <span th:text="${users}"></span> Users
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        This is some text within a card body.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        This is some text within a card body.
+                    </div>
+                </div>
+
+            </div>
+        </main>
     </div>
     <script th:src="@{/js/bootstrap.bundle.min.js}" ></script>
 </body>
