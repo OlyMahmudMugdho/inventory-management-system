@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -70,11 +71,19 @@ public class RoleController {
     public String editRolePage(@PathVariable("id") int id, Model model) {
         Optional<Role> role = roleService.getRoleById(id);
         if (role.isPresent()) {
-            model.addAttribute("role",role.get());
+            model.addAttribute("role",roleMapper.mapTo(role.get()));
         }
         else {
             return "redirect:/roles";
         }
         return "roles/edit-role-page";
+    }
+
+    @PostMapping("/edit")
+    public String editRole(@ModelAttribute("roleDto") RoleDto roleDto, RedirectAttributes redirectAttributes) {
+        Role role = roleMapper.mapFrom(roleDto);
+        roleService.updateRole(role);
+        redirectAttributes.addAttribute("updated","true");
+        return "redirect:/roles";
     }
 }
