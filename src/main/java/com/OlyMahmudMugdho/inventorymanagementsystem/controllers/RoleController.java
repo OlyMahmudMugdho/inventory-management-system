@@ -57,12 +57,13 @@ public class RoleController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteRole(@PathVariable("id") int id) {
+    public String deleteRole(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         Optional<Role> role = roleService.getRoleById(id);
         if (role.isPresent()) {
             log.info(role.get().toString());
             System.out.println(role.get().toString());
             roleService.deleteRoleById(id);
+            redirectAttributes.addAttribute("deleted", "true");
         }
         return "redirect:/roles";
     }
