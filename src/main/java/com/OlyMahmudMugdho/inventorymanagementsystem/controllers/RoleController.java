@@ -65,4 +65,16 @@ public class RoleController {
         }
         return "redirect:/roles";
     }
+
+    @GetMapping("/edit-role/{id}")
+    public String editRolePage(@PathVariable("id") int id, Model model) {
+        Optional<Role> role = roleService.getRoleById(id);
+        if (role.isPresent()) {
+            model.addAttribute("role",role.get());
+        }
+        else {
+            return "redirect:/roles";
+        }
+        return "roles/edit-role-page";
+    }
 }
