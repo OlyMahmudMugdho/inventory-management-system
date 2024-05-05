@@ -37,4 +37,8 @@ public class RoleService {
         roleRepository.deleteById(id);
     }
 
+    public void updateRole(Role role) {
+        roleRepository.save(role);
+    }
+
 }
