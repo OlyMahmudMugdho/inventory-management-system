@@ -31,6 +31,9 @@ public class GlobalService {
     public long productCount(){
         return productRepository.count();
     }
-    
+
+    public long categoryCount() {
+        return categoryRepository.count();
+    }
 
 }
