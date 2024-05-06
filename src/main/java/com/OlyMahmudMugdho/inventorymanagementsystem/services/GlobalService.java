@@ -36,4 +36,8 @@ public class GlobalService {
         return categoryRepository.count();
     }
 
+    public long roleCount(){
+        return roleRepository.count();
+    }
+
 }
