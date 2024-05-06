@@ -27,6 +27,10 @@ public class GlobalService {
     public long userCount(){
         return userRepository.count();
     }
+
+    public long productCount(){
+        return productRepository.count();
+    }
     
 
 }
