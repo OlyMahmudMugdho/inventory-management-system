@@ -17,6 +17,7 @@ public class GlobalController {
     public String homePage(Model model) {
         model.addAttribute("users", globalService.userCount());
         model.addAttribute("products", globalService.productCount());
+        model.addAttribute("categories", globalService.categoryCount());
         return "index";
     }
 }
