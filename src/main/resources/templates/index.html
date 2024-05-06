@@ -21,24 +21,36 @@
 
             <div class="py-4"></div>
 
-            <div class="my-4 d-flex flex-row justify-content-center align-content-center flex-wrap gap-2">
-                <div class="card bg-warning bg-opacity-50">
-                    <div class="card-body">
-                        <span th:text="${users}"></span> Users
+            <div class="my-4 w-100  d-flex flex-row justify-content-center align-content-center flex-wrap gap-4">
+                <a th:href="@{/users}" class="card bg-primary text-decoration-none bg-opacity-25  col-md-3 col-10">
+                    <div class="card-body  text-center fs-4 py-5 py-5 py-2  text-center">
+                        <span th:text="${users}"></span>
+                        <p>Users</p>
                     </div>
-                </div>
+                </a>
 
-                <div class="card">
-                    <div class="card-body">
-                        This is some text within a card body.
+                <a th:href="@{/products}" class="card text-decoration-none bg-primary bg-opacity-25 col-md-3 col-10">
+                    <div class="card-body  text-center fs-4 py-5 py-5 py-2">
+                        <span th:text="${products}"></span>
+                        <p>Products</p>
                     </div>
-                </div>
+                </a>
 
-                <div class="card">
-                    <div class="card-body">
-                        This is some text within a card body.
+                <a th:href="@{/categories}" class="card bg-primary text-decoration-none bg-opacity-25 col-md-3 col-10">
+                    <div class="card-body  text-center fs-4 py-5 py-5 py-2">
+                        <span th:text="${categories}"></span>
+                        <p>Categories</p>
                     </div>
-                </div>
+                </a>
+
+
+                <a th:href="@{/roles}" class="card bg-primary text-decoration-none bg-opacity-25 col-md-3 col-10">
+                    <div class="card-body  text-center fs-4 py-5 py-5 py-2">
+                        <span th:text="${roles}"></span>
+                        <p>Roles</p>
+                    </div>
+                </a>
+
 
             </div>
         </main>
