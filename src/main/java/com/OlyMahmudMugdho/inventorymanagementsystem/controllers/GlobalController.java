@@ -16,6 +16,7 @@ public class GlobalController {
     @GetMapping("/")
     public String homePage(Model model) {
         model.addAttribute("users", globalService.userCount());
+        model.addAttribute("products", globalService.productCount());
         return "index";
     }
 }
