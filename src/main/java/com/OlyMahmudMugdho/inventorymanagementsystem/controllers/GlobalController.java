@@ -18,6 +18,7 @@ public class GlobalController {
         model.addAttribute("users", globalService.userCount());
         model.addAttribute("products", globalService.productCount());
         model.addAttribute("categories", globalService.categoryCount());
+        model.addAttribute("roles", globalService.roleCount());
         return "index";
     }
 }
