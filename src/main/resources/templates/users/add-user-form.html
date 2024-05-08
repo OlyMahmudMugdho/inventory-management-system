@@ -23,8 +23,19 @@
         </div>
         <div class="mb-3 w-100">
             <label for="name" class="form-label">Full Name</label>
-            <input required th:field="*{Name}" type="text" class="form-control" id="name" placeholder="Full Name">
+            <input required th:field="*{name}" type="text" class="form-control" id="name" placeholder="Full Name">
         </div>
+
+        <div class="mb-3 w-100">
+            <label for="password" class="form-label">Password</label>
+            <input required th:field="*{password}" type="text" class="form-control" id="password" placeholder="Password">
+        </div>
+
+        <div class="mb-3 w-100">
+            <label for="email" class="form-label">E-mail</label>
+            <input required th:field="*{email}" type="text" class="form-control" id="email" placeholder="E-mail">
+        </div>
+
         <div class="w-100 my-3">
             <button class="btn btn-primary text-white w-100">Save User Information</button>
         </div>
