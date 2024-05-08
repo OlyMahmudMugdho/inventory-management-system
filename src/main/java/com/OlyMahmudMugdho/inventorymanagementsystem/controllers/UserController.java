@@ -47,4 +47,12 @@ public class UserController {
         model.addAttribute("size",size);
         return "users/all-users-page";
     }
+
+    @GetMapping("/add-user")
+    public String addUserPage(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "users/add-user-form";
+    }
+
 }
