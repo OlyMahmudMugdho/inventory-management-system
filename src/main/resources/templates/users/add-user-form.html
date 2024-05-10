@@ -36,6 +36,13 @@
             <input required th:field="*{email}" type="text" class="form-control" id="email" placeholder="E-mail">
         </div>
 
+        <div class="mb-3 w-100">
+            <label for="roles"  class="form-label">Role</label>
+            <select class="form-select" id="roles" name="roles" th:object="${allRoles}">
+                <option name="role" th:each="role : ${allRoles}" th:text="${role.getAuthority}" th:value="${role.getRoleId()}">role name</option>
+            </select>
+        </div>
+
         <div class="w-100 my-3">
             <button class="btn btn-primary text-white w-100">Save User Information</button>
         </div>
