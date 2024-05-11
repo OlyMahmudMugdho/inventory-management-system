@@ -33,6 +33,20 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @GetMapping("/{id}")
+    public String userDetails(@PathVariable long id, Model model, RedirectAttributes redirectAttributes) {
+        Optional<User> fetchedUser = userService.getUserById(id);
+        if (fetchedUser.isEmpty()) {
+            redirectAttributes.addAttribute("error", true);
+            return "redirect:/users";
+        }
+        User user = fetchedUser.get();
+        Role role = user.getRoles().stream().findFirst().get();
+        model.addAttribute("user", user);
+        model.addAttribute("role", role);
+        return "users/user-details";
+    }
+
     @GetMapping()
     public String getAllUsers(
             Model model,
