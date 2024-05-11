@@ -5,6 +5,8 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.UserDto;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.User;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.RoleService;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.impl.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,15 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
     private UserService userService;
     private RoleService roleService;
     private PasswordEncoder passwordEncoder;
@@ -76,6 +77,25 @@ public class UserController {
         userService.addUser(newUser);
         System.out.println(user);
         return "redirect:/users";
+    }
+
+
+    @GetMapping("/edit-user/{id}")
+    public String editUserPage(@PathVariable long id, Model model, RedirectAttributes redirectAttributes){
+        Optional<User> fetchedUser = userService.getUserById(id);
+        if (fetchedUser.isEmpty()) {
+            redirectAttributes.addAttribute("error",true);
+            return "redirect:/users";
+        }
+        User user = fetchedUser.get();
+        Role usrRole = user.getRoles().stream().findFirst().get();
+        log.info(usrRole.toString());
+        model.addAttribute("user",user);
+        List<Role> allRoles = roleService.getAllRoles();
+        model.addAttribute("allRoles", allRoles);
+        model.addAttribute("userRoleId", usrRole.getRoleId());
+        //return "redirect:/users";
+        return "users/edit-user-page";
     }
 
 }
