@@ -127,4 +127,17 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable long id, RedirectAttributes redirectAttributes){
+        try {
+            userService.deleteUser(id);
+            redirectAttributes.addAttribute("deleted", true);
+        }
+        catch (Exception exception){
+            exception.printStackTrace();
+            redirectAttributes.addAttribute("error",true);
+        }
+        return "redirect:/users";
+    }
+
 }
