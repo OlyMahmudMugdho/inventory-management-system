@@ -16,7 +16,11 @@
 
 <div   class=" container position-relative  d-flex flex-column align-items-center justify-content-start mt-5 pt-5 w-100 ">
     <h3 class="bg-light shadow-lg rounded-2 w-50 text-primary text-center py-2">Update User</h3>
-    <form th:action="@{/users/add}" th:object="${user}" class="bg-light shadow-lg rounded-2 py-5 px-5 col-md-7 d-flex flex-column justify-content-center align-items-center "  method="post">
+    <form th:action="@{/users/edit}" th:object="${user}" class="bg-light shadow-lg rounded-2 py-5 px-5 col-md-7 d-flex flex-column justify-content-center align-items-center "  method="post">
+
+
+        <input hidden th:field="*{id}" type="number" class="form-control" id="id" >
+
         <div class="mb-3 w-100">
             <label for="username" class="form-label">Username</label>
             <input required th:field="*{username}" type="text" class="form-control" id="username" placeholder="Username">
