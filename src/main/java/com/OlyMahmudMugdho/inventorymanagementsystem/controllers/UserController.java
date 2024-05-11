@@ -43,7 +43,7 @@ public class UserController {
         User user = fetchedUser.get();
         Role role = user.getRoles().stream().findFirst().get();
         model.addAttribute("user", user);
-        model.addAttribute("role", role);
+        model.addAttribute("role", role.getAuthority());
         return "users/user-details";
     }
 
