@@ -98,4 +98,19 @@ public class UserController {
         return "users/edit-user-page";
     }
 
+    @PostMapping("/edit")
+    public String editUser(@ModelAttribute("user") User user) {
+        User fetchedUser = userService.getUserById(user.getId()).get();
+
+        fetchedUser.setUsername(user.getUsername());
+        fetchedUser.setName(user.getName());
+        fetchedUser.setEmail(user.getEmail());
+        fetchedUser.setRoles(user.getRoles());
+
+        userService.updateUser(fetchedUser);
+
+        System.out.println(user);
+        return "redirect:/users";
+    }
+
 }
