@@ -37,4 +37,8 @@ public class UserService implements IUserService {
     public User updateUser(User user) {
         return userRepository.save(user);
     }
+
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
 }
