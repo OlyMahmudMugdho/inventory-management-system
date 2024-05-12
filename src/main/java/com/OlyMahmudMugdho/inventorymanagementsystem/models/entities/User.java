@@ -24,14 +24,13 @@ public class User implements UserDetails {
     @Column(unique = true)
     private String username;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
             name = "user_role_junction",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     @Column(name = "roles")
-    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Role> roles;
     private String address;
     private String password;
