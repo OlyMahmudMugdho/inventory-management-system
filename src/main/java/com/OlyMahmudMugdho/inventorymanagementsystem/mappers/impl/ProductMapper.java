@@ -2,6 +2,7 @@ package com.OlyMahmudMugdho.inventorymanagementsystem.mappers.impl;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.mappers.Mapper;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.ProductDto;
+import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.rest.ProductDtoRest;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Product;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -23,5 +24,9 @@ public class ProductMapper implements Mapper<Product, ProductDto> {
     @Override
     public Product mapFrom(ProductDto productDto) {
         return modelMapper.map(productDto, Product.class);
+    }
+
+    public ProductDtoRest mapToRest(ProductDto productDto){
+        return modelMapper.map(productDto, ProductDtoRest.class);
     }
 }
