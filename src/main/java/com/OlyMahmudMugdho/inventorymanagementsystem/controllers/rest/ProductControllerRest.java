@@ -22,11 +22,12 @@ public class ProductControllerRest {
         this.productMapper = productMapper;
     }
 
-    @GetMapping("/products")
+    @GetMapping(path = {"/products","/products/"})
     public List<ProductDtoRest> getAllProducts() {
         List<ProductDto> productDtos = productService.getAllProducts();
         List<ProductDtoRest> products = new ArrayList<>();
         productDtos.stream().map(p -> productMapper.mapToRest(p)).forEach(products::add);
         return products;
     }
+
 }
