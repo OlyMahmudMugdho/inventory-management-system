@@ -50,7 +50,7 @@ public class SecurityConfig  {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((request) -> {
                     request
-                            .requestMatchers("/resources/**", "/js/**", "/styles/**","/css/**","/fragments/**").permitAll()
+                            .requestMatchers("/resources/**", "/js/**", "/styles/**","/css/**","/fragments/**","/api/v1/**").permitAll()
                             .requestMatchers("/login").permitAll()
                             .requestMatchers("/register").permitAll()
                             .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
