@@ -1,0 +1,7 @@
+spring.application.name=inventory-management-system
+spring.datasource.url=jdbc:postgresql://ep-solitary-mouse-a22ybfsr.eu-central-1.pg.koyeb.app/koyebdb?user=koyeb-adm&password=6pFi8uhaVHQd
+spring.datasource.username=koyeb-adm
+spring.datasource.password=6pFi8uhaVHQd
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.mvc.hiddenmethod.filter.enabled=true

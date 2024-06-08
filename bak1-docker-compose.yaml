@@ -1,0 +1,19 @@
+version: '3.9'
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - 5432:5432
+
+  jre_app:
+    image: openjdk:21-jdk
+    container_name: ims-spring-mvc
+    volumes:
+      - ./target/inventory-management-system-0.0.1-SNAPSHOT.jar:/app/inventory-management-system-0.0.1-SNAPSHOT.jar
+    command: java -jar /app/inventory-management-system-0.0.1-SNAPSHOT.jar
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
