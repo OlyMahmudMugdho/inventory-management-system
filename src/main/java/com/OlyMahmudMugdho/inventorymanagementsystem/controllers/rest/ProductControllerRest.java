@@ -22,10 +22,7 @@ public class ProductControllerRest {
     }
 
     @GetMapping("/products")
-    public List<Product> getAllProducts() {
-        List<ProductDto> productDtos = productService.getAllProducts();
-        List<Product> products = new ArrayList<>();
-        productDtos.stream().map(p -> productMapper.mapFrom(p)).forEach(products::add);
-        return products;
+    public List<ProductDto> getAllProducts() {
+        return productService.getAllProducts();
     }
 }
