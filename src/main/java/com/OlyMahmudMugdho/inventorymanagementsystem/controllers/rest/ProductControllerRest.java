@@ -33,7 +33,7 @@ public class ProductControllerRest {
     }
 
     @GetMapping(path = {"/products/{id}","/products/{id}/"})
-    public Optional<ProductDtoRest> getProductById(@PathVariable Long id){
+    public Optional<ProductDtoRest> getProduct(@PathVariable Long id){
         Optional<ProductDto> productDto = productService.getProductById(id);
         if(productDto.isPresent()){
             ProductDtoRest productDtoRest = productMapper.mapToRest(productDto.get());
