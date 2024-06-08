@@ -2,6 +2,7 @@ package com.OlyMahmudMugdho.inventorymanagementsystem.controllers.rest;
 
 import com.OlyMahmudMugdho.inventorymanagementsystem.mappers.impl.ProductMapper;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.ProductDto;
+import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.rest.ProductDtoRest;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Product;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.ProductService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +23,10 @@ public class ProductControllerRest {
     }
 
     @GetMapping("/products")
-    public List<ProductDto> getAllProducts() {
-        return productService.getAllProducts();
+    public List<ProductDtoRest> getAllProducts() {
+        List<ProductDto> productDtos = productService.getAllProducts();
+        List<ProductDtoRest> products = new ArrayList<>();
+        productDtos.stream().map(p -> productMapper.mapToRest(p)).forEach(products::add);
+        return products;
     }
 }
