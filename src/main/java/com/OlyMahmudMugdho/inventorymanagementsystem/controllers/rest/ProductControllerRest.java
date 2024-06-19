@@ -41,6 +41,9 @@ public class ProductControllerRest {
                                         @RequestParam(defaultValue = "0") int page,
                                         @RequestParam(defaultValue = "5") int size
     ) {
+        if (size <= 0) {
+            return new ArrayList<>();
+        }
         Pageable pagination = PageRequest.of(page, size);
         Page<Product> products = productService.getPaginatedProducts(pagination);
         List<ProductDtoRest> productDtos = new ArrayList<>();
