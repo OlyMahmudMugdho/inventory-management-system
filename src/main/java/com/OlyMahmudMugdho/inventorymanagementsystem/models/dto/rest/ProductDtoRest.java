@@ -17,4 +17,5 @@ public class ProductDtoRest {
     private double unitPrice; // Assuming unitPrice should be a double
     private String status;
     private String categories;
+    private String image;
 }
