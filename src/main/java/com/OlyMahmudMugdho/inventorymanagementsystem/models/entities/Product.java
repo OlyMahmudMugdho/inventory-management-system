@@ -25,6 +25,7 @@ public class Product {
     private double price;
     private double unitPrice;
     private String status;
+    private String image;
 
 //    @ManyToOne
 //    @JoinTable(
