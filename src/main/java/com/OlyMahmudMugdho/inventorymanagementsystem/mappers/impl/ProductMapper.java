@@ -29,4 +29,10 @@ public class ProductMapper implements Mapper<Product, ProductDto> {
     public ProductDtoRest mapToRest(ProductDto productDto){
         return modelMapper.map(productDto, ProductDtoRest.class);
     }
+
+
+    public ProductDtoRest mapToRest(Product product){
+        return modelMapper.map(product, ProductDtoRest.class);
+    }
+
 }
