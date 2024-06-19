@@ -5,10 +5,11 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.ProductDto;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.dto.rest.ProductDtoRest;
 import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Product;
 import com.OlyMahmudMugdho.inventorymanagementsystem.services.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import java.util.Optional;
 public class ProductControllerRest {
     private final ProductMapper productMapper;
     private ProductService productService;
+
+
     public ProductControllerRest(ProductService productService, ProductMapper productMapper) {
         this.productService = productService;
         this.productMapper = productMapper;
@@ -30,6 +33,21 @@ public class ProductControllerRest {
         List<ProductDtoRest> products = new ArrayList<>();
         productDtos.stream().map(p -> productMapper.mapToRest(p)).forEach(products::add);
         return products;
+    }
+
+
+    @GetMapping(path = {"/experimental/products","/experimental/products/"})
+    public List<ProductDtoRest> paginatedProductsPage(Model model,
+                                        @RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "5") int size
+    ) {
+        Pageable pagination = PageRequest.of(page, size);
+        Page<Product> products = productService.getPaginatedProducts(pagination);
+        List<ProductDtoRest> productDtos = new ArrayList<>();
+        for (Product product : products.getContent()) {
+            productDtos.add(productMapper.mapToRest(product));
+        }
+        return productDtos;
     }
 
     @GetMapping(path = {"/products/{id}","/products/{id}/"})
