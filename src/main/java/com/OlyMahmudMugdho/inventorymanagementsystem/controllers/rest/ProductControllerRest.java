@@ -27,7 +27,7 @@ public class ProductControllerRest {
         this.productMapper = productMapper;
     }
 
-    @GetMapping(path = {"/products","/products/"})
+    @GetMapping(path = {"/products/all","/products/all/"})
     public List<ProductDtoRest> getAllProducts() {
         List<ProductDto> productDtos = productService.getAllProducts();
         List<ProductDtoRest> products = new ArrayList<>();
@@ -36,7 +36,7 @@ public class ProductControllerRest {
     }
 
 
-    @GetMapping(path = {"/experimental/products","/experimental/products/"})
+    @GetMapping(path = {"/products","/products/"})
     public List<ProductDtoRest> paginatedProductsPage(Model model,
                                         @RequestParam(defaultValue = "0") int page,
                                         @RequestParam(defaultValue = "5") int size
