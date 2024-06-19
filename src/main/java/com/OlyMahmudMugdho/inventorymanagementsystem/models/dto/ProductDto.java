@@ -26,6 +26,7 @@ public class ProductDto {
     private String provider;
     private String addedOn;
     private boolean isRemoved;
+    private String image;
 
     public String getAddedByUsername(){
         String username = "";
