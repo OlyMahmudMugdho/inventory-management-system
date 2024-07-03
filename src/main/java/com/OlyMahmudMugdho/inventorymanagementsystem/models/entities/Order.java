@@ -16,6 +16,7 @@ import java.util.List;
 public class Order {
     @Id
     @Column(name = "order_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
