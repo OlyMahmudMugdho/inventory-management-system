@@ -29,6 +29,7 @@ public class KafkaController {
     public Map<String,Boolean> bulkAddOrders(){
         Map<String,Boolean> response = new HashMap<>();
         this.kafkaService.addAllOrderToDb();
+        this.kafkaService.addAllItemsToDb();
         response.put("added", true);
         return response;
     }
