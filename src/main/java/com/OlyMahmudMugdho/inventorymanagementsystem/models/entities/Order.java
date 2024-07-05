@@ -18,13 +18,6 @@ public class Order {
     @Column(name = "order_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinTable(
-            name = "order_item_junction",
-            joinColumns = @JoinColumn(name = "item_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id")
-    )
-    private List<Item> items;
     private Double subtotal;
     private String userId;
     private String cartId;
