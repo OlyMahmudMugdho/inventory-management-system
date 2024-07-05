@@ -14,9 +14,9 @@ public class Item {
     @Column(name = "item_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    private Order orderId;
+    private String cartId;
     private String productId;
+    private String userId;
     private Double quantity;
     private Float price;
 }
