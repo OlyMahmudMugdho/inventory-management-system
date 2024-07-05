@@ -7,12 +7,10 @@ import com.OlyMahmudMugdho.inventorymanagementsystem.models.entities.Order;
 import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.ItemRepository;
 import com.OlyMahmudMugdho.inventorymanagementsystem.repositories.OrderRepository;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +46,7 @@ public class KafkaService {
                     itemDto.setUserId(order.getUserId());
                     itemDto.setCartId(order.getCartId());
                     return modelMapper.map(itemDto, Item.class);
-                }).collect(Collectors.toList());
+                }).toList();
         items.addAll(item);
         orders.add(order);
         System.out.println(orders);
@@ -56,17 +54,15 @@ public class KafkaService {
     }
 
     public List<OrderDto> getOrders() {
-        ModelMapper modelMapper = new ModelMapper();
         return orders.stream().map(
                 o -> orderMapper.mapTo(o)
         ).collect(Collectors.toList());
     }
 
     public void addAllOrderToDb() {
-        List<Order> ordersRes = orderRepository.saveAll(orders);
+        orderRepository.saveAll(orders);
     }
     public void addAllItemsToDb(){
-        System.out.println(items);
         itemRepository.saveAll(items);
     }
 
