@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ItemDto {
     private String productId;
+    private String userId;
+    private String cartId;
     private Double quantity;
     private Float price;
 }
