@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: inventory-management-system
+  server:
+    port: 8081
+  datasource:
+    url: jdbc:postgresql://ims-db:5432/postgres
+    username: postgres
+    password: mysecretpassword
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 100000
+        order_inserts: true
+
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: ${BOOTSTRAP_SERVER}:29092
+      group-id: "my-app"
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: com.learning.events # change this with your event packages
+    producer:
+      acks: -1
+      bootstrap-servers: ${BOOTSTRAP_SERVER}:29092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

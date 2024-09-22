@@ -29,7 +29,7 @@ public class KafkaConfig {
 
         // Adding the Configuration
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "127.0.0.1:9092");
+                "kafka:29092");
         config.put(ConsumerConfig.GROUP_ID_CONFIG,
                 "listen1");
         config.put(

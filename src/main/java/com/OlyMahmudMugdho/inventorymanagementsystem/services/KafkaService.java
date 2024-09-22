@@ -60,6 +60,7 @@ public class KafkaService {
     }
 
     public void addAllOrderToDb() {
+        System.out.println(orders);
         orderRepository.saveAll(orders);
     }
     public void addAllItemsToDb(){
